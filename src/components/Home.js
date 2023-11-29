@@ -1,7 +1,12 @@
-import React from 'react'
+import React, { useEffect } from 'react';
 import { Button } from 'reactstrap';
 
 export default function Home() {
+
+  useEffect(()=>{
+    document.title="Home";
+},[])
+
     const homeStyle = {
         color: '#244648',
         backgroundColor: '#c2d3d0',
@@ -13,8 +18,8 @@ export default function Home() {
       };
 
       const buttonStyle = {
-        backgroundColor: '#rgb(20 94 91)', 
-        color: 'white',
+        color: '#c2d3d0',
+        backgroundColor: '#244648',
         border: 'none',
         borderRadius: '5px',
         padding: '10px 20px',

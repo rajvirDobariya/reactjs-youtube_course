@@ -1,22 +1,67 @@
-import React, { Fragment } from "react";
+import axios from "axios";
+import React, { useEffect, Fragment, useState } from "react";
 import { Form, FormGroup, Label, Input, Button } from "reactstrap";
+import base_url from "../api/bootapi";
+import { toast } from "react-toastify";
+import { useNavigate, useLocation } from "react-router-dom";
 
 export default function AddCourse() {
+
+  const location = useLocation();
+  const updateCourse = location?.state?.course; 
+  const [course, setCourse] = useState({});
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    document.title = "Add Course";
+  }, []);
+
+
+  const handleForm = (e) => {
+    e.preventDefault();
+    
+    if (updateCourse) {
+      const updatedCourse = { ...course, id: updateCourse.id };
+    
+      updateCourseToServer(updatedCourse);
+    } else {
+      addCourseToServer(course);
+    }
+  };
+  
+  const addCourseToServer = (course) => {
+    axios.post(`${base_url}/courses`, course).then(
+      (response) => {
+        toast.success("Course Added Successfully!");
+        navigate("/all-courses");
+      },
+      (error) => {
+        toast.error("Something went wrong!");
+      }
+    );
+  };
+
+  const updateCourseToServer = (course) => {
+    const url = (`${base_url}/courses/${course.id}`);
+    console.log("course:---" + course);
+    console.log("url:---" + url);
+    axios.put(url, course).then(
+      (response) => {
+        toast.success("Course Updated Successfully!");
+        // rediret all courses
+        navigate("/all-courses");
+      },
+      (error) => {
+        toast.error("Something went wrong!");
+      }
+    );
+  };
+
   return (
     <>
       <Fragment>
         <h1 className="">Fill Course Detail</h1>
-        <Form>
-          <FormGroup>
-            <Label for="userId">Course Id</Label>
-            <Input
-              type="text"
-              name="userId"
-              id="userId"
-              placeholder="Enter text here"
-              style={inputStyle}
-            />
-          </FormGroup>
+        <Form onSubmit={handleForm}>
 
           <FormGroup>
             <Label for="courseTitle">Course Title</Label>
@@ -26,6 +71,10 @@ export default function AddCourse() {
               id="courseTitle"
               placeholder="Enter course title"
               style={inputStyle}
+              onChange={(e)=>{
+                setCourse({...course,title:e.target.value});
+              }}
+
             />
           </FormGroup>
 
@@ -37,14 +86,18 @@ export default function AddCourse() {
               id="courseDescription"
               placeholder="Enter course description"
               style={textareaStyle}
+              onChange={(e)=>{
+                setCourse({...course,description:e.target.value})
+              }}
+
             />
           </FormGroup>
 
-          <div className='' style={buttonContainerStyle}>
-            <Button color="primary" style={buttonStyle}>
+          <div className="" style={buttonContainerStyle}>
+            <Button type='submit' color="primary" style={buttonStyle}>
               Submit
             </Button>
-            <Button color="success" style={buttonStyle}>
+            <Button type='reset' color="success" style={buttonStyle} onClick={(e) => { setCourse({}) }}>
               Clear
             </Button>
           </div>
