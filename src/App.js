@@ -11,11 +11,13 @@ import Contact from "./components/Contact";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 function App() {
+  
   const notify = () => {
     toast.success("Wow so easy !", {
       position: "top-center",
     });
   };
+  
   return (
     <>
       <Router>

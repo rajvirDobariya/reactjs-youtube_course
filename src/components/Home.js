@@ -7,24 +7,30 @@ export default function Home() {
     document.title="Home";
 },[])
 
-    const homeStyle = {
-        color: '#244648',
-        backgroundColor: '#c2d3d0',
-        textAlign: 'center',
-        padding: '40px',
-        margin: '20px',
-        borderRadius: '8px',
-        boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)',
-      };
+const homeStyle = {
+  color: '#244648',
+  backgroundColor: '#c2d3d0',
+  textAlign: 'center',
+  padding: '20px',
+  marginTop: '20px',
+  borderRadius: '8px',
+  boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)',
+};
 
-      const buttonStyle = {
-        color: '#c2d3d0',
-        backgroundColor: '#244648',
-        border: 'none',
-        borderRadius: '5px',
-        padding: '10px 20px',
-        fontSize: '1rem',
-      };
+const buttonStyle = {
+  color: '#fff',
+  backgroundColor: '#244648',
+  border: 'none',
+  borderRadius: '5px',
+  padding: '12px 24px',
+  fontSize: '1rem',
+  cursor: 'pointer',
+  marginTop: '20px',
+  transition: 'background-color 0.3s ease-in-out',
+  textDecoration: 'none',
+  display: 'inline-block',
+  outline: 'none',
+};
   return (
     <>
     <div className='home' style={homeStyle}>
