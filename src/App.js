@@ -28,7 +28,6 @@ function App() {
             </Col>
             <Col md={8}>
               <Routes>
-            {/* <Route exact key='general-route' path="/" element={<Home setProgress={this.setProgress}  key='general-route'/>}></Route> */}
                 <Route exact key='general-route' path="/" element={<Home />}></Route>
                 <Route exact key='general-route' path="/add-course" element={<AddCourse />}></Route>
                 <Route exact key='general-route' path="/all-courses" element={<AllCources />}></Route>

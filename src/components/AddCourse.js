@@ -33,7 +33,9 @@ export default function AddCourse() {
     axios.post(`${base_url}/courses`, course).then(
       (response) => {
         toast.success("Course Added Successfully!");
-        navigate("/all-courses");
+        setTimeout(() => {
+          navigate("/all-courses");
+        }, 1000); 
       },
       (error) => {
         toast.error("Something went wrong!");

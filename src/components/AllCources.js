@@ -7,9 +7,24 @@ import { toast } from "react-toastify";
 export default function AllCources() {
   const [courses, setCourses] = useState([]);
 
+
+  const [toastShown, setToastShown] = useState(false);
+
   useEffect(() => {
     document.title = "All Courses";
-    getAllCoursesFromServer();
+
+    axios.get(`${base_url}/courses`).then(
+      (response) => {
+        setCourses(response.data);
+        if (!toastShown) {
+          toast.success("Courses loaded successfully!");
+          setToastShown(true);
+        }
+      },
+      (error) => {
+        toast.error("Something went wrong!");
+      }
+    );
   }, []);
 
   const getAllCoursesFromServer = () => {
@@ -17,13 +32,11 @@ export default function AllCources() {
     axios.get(`${base_url}/courses`).then(
 
       (response) => {
-        console.log(response);
-        toast.success("Courses loaded successfully!");
         setCourses(response.data);
+        toast.success("Courses loaded successfully!");
       },
       
       (error) => {
-        console.log(error);
         toast.error("Something went wrong!");
       }
     );
