@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import Course from "./Cource";
 import base_url from "../api/bootapi";
 import axios from "axios";
-import { toast } from "react-toastify";
 
 export default function AllCources() {
   const [courses, setCourses] = useState([]);

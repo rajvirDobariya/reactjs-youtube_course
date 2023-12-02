@@ -38,6 +38,13 @@ export default function Menus() {
         <Link to="/contact" className="list-group-item list-group-item-action" style={linkStyle}>
           Contact
         </Link>
+        <Link to="/add-todo" className="list-group-item list-group-item-action" style={linkStyle}>
+          Add Todo
+        </Link>
+        <Link to="/all-todos" className="list-group-item list-group-item-action" style={linkStyle}>
+          All Todos
+        </Link>
+
       </ListGroup>
     </div>
   );

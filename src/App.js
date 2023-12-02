@@ -1,6 +1,6 @@
 import "./App.css";
 import { Col, Container, Row } from "reactstrap";
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import Header from "./components/Header";
 import Menus from "./components/Menus";
 import Home from "./components/Home";
@@ -9,15 +9,12 @@ import AllCources from "./components/AllCources";
 import About from "./components/About";
 import Contact from "./components/Contact";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import AddTodo from "./components/Todo/AddTodo";
+import AllTodos from "./components/Todo/AllTodos";
 
 function App() {
   
-  const notify = () => {
-    toast.success("Wow so easy !", {
-      position: "top-center",
-    });
-  };
-  
+ 
   return (
     <>
       <Router>
@@ -35,6 +32,8 @@ function App() {
                 <Route exact key='general-route' path="/all-courses" element={<AllCources />}></Route>
                 <Route exact key='general-route' path="/about" element={<About />}></Route>
                 <Route exact key='general-route' path="/contact" element={<Contact />}></Route>
+                <Route exact key='general-route' path="/add-todo" element={<AddTodo />}></Route>
+                <Route exact key='general-route' path="/all-todos" element={<AllTodos />}></Route>
               </Routes>
             </Col>
           </Row>
